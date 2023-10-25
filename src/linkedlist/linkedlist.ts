@@ -8,9 +8,10 @@ export class LinkedList<T> {
     length: number = 0
 
     append(item: T): void {
+        this.length++;
+
         if (!this.head) {
-            this.head = { value: item };
-            this.length++;
+            this.head = { value: item } as Node<T>;
             return;
         }
 
@@ -19,21 +20,18 @@ export class LinkedList<T> {
             curr = curr.next;
         }
 
-        curr.next = { value: item }
-        this.length++;
+        curr.next = { value: item } as Node<T>;
     }
 
     prepend(item: T): void {
+        this.length++;
+
         if (!this.head) {
-            this.head = { value: item };
-            this.length++;
+            this.head = { value: item } as Node<T>;
             return;
         }
 
-        const node = { value: item, next: this.head };
-
-        this.head = node;
-        this.length++;
+        this.head = { value: item, next: this.head } as Node<T>;
     }
 
     get(index: number): T | undefined {
