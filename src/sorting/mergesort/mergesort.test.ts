@@ -1,7 +1,7 @@
 import { mergesort } from "./mergesort";
 
 test('mergesort', () => {
-    const arr = [10, 4, 43, 5, 57, 91, 45, 9, 7] ;
+    const arr = [10, 4, 43, 5, 57, 91, 45, 9, 7];
 
     mergesort(arr, 0, arr.length - 1);
 
