@@ -61,6 +61,68 @@ describe("LinkedList", () => {
         expect(() => { list.insertAt(10, 111) }).toThrow(new Error("Index out of bounds"));
     })
 
+    it("should remove item at index", () => {
+        let list = new LinkedList<number>();
+
+        list.append(42);
+        list.append(69);
+        list.append(777);
+
+        let removed = list.removeAt(4);
+
+        expect(removed).toBeUndefined();
+
+        removed = list.removeAt(0);
+
+        expect(removed).toBe(42);
+        expect(list.head?.value).toBe(69);
+        expect(list.length).toBe(2);
+
+        removed = list.removeAt(1);
+
+        expect(removed).toBe(777);
+        expect(list.tail?.value).toBe(69);
+        expect(list.length).toBe(1);
+
+        removed = list.removeAt(0);
+
+        expect(removed).toBe(69);
+        expect(list.tail).toBeUndefined();
+        expect(list.head).toBeUndefined();
+        expect(list.length).toBe(0);
+    })
+
+    it("should remove item by value", () => {
+        let list = new LinkedList<number>();
+
+        list.append(42);
+        list.append(69);
+        list.append(777);
+
+        let removed = list.remove(999);
+
+        expect(removed).toBeUndefined();
+
+        removed = list.remove(42);
+
+        expect(removed).toBe(42);
+        expect(list.head?.value).toBe(69);
+        expect(list.length).toBe(2);
+
+        removed = list.remove(777);
+
+        expect(removed).toBe(777);
+        expect(list.tail?.value).toBe(69);
+        expect(list.length).toBe(1);
+
+        removed = list.remove(69);
+
+        expect(removed).toBe(69);
+        expect(list.tail).toBeUndefined();
+        expect(list.head).toBeUndefined();
+        expect(list.length).toBe(0);
+    })
+
     it("should get the 3rd value from the list", () => {
         let list = new LinkedList<number>();
 
