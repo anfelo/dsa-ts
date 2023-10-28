@@ -44,6 +44,7 @@ describe("LinkedList", () => {
         list.insertAt(1, 777);
 
         expect(list.head?.next?.value).toBe(777);
+        expect(list.head?.next?.next?.prev?.value).toBe(777);
         expect(list.length).toBe(4);
 
         list.insertAt(0, 8);
@@ -76,6 +77,7 @@ describe("LinkedList", () => {
 
         expect(removed).toBe(42);
         expect(list.head?.value).toBe(69);
+        expect(list.tail?.value).toBe(777);
         expect(list.length).toBe(2);
 
         removed = list.removeAt(1);
@@ -126,15 +128,15 @@ describe("LinkedList", () => {
     it("should get the 3rd value from the list", () => {
         let list = new LinkedList<number>();
 
-        expect(list.get(0)).toBe(undefined);
+        expect(list.getAt(0)).toBe(undefined);
 
         list.append(42);
         list.append(69);
         list.append(777);
 
-        expect(list.get(0)).toBe(42);
-        expect(list.get(2)).toBe(777);
-        expect(list.get(3)).toBe(undefined);
+        expect(list.getAt(0)).toBe(42);
+        expect(list.getAt(2)).toBe(777);
+        expect(list.getAt(3)).toBe(undefined);
         expect(list.length).toBe(3);
     });
 })
