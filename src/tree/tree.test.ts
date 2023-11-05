@@ -1,9 +1,9 @@
-import { BinaryTree } from "./tree"
+import { BinaryTree, compare } from "./tree"
 
 test("should create an empty binary tree", () => {
     const tree = new BinaryTree();
 
-    expect(tree.root).toBeUndefined();
+    expect(tree.root).toBeNull();
 })
 
 test("should insert value in the tree", () => {
@@ -72,6 +72,13 @@ test("should traverse the tree in a Debth First post-order manner", () => {
     let visited = tree.traversePostOrderDF(tree.root, []);
 
     expect(visited).toEqual([1, 9, 8, 20, 30, 23, 10]);
+})
+
+test("should compare two binary trees in shape and values", () => {
+    const tree1 = buildBinaryTree([10, 23, 8, 20, 1 , 9, 30]);
+    const tree2 = buildBinaryTree([10, 23, 8, 20, 1 , 9, 30]);
+
+    expect(compare(tree1.root, tree2.root)).toBeTruthy();
 })
 
 function buildBinaryTree<T>(values: T[]): BinaryTree<T> {

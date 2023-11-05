@@ -1,20 +1,20 @@
 import { Queue } from "../queue/queue.solution";
 
-type Node<T> = {
+type BinaryNode<T> = {
     value: T;
-    left?: Node<T>;
-    right?: Node<T>;
+    left: BinaryNode<T> | null;
+    right: BinaryNode<T> | null;
 }
 
 export class BinaryTree<T> {
-    root?: Node<T>;
+    root: BinaryNode<T> | null;
 
     constructor() {
-        this.root = undefined;
+        this.root = null;
     }
 
     insert(item: T): void {
-        const node: Node<T> = { value: item, left: undefined, right: undefined };
+        const node: BinaryNode<T> = { value: item, left: null, right: null };
 
         if (!this.root) {
             this.root = node;
@@ -44,7 +44,7 @@ export class BinaryTree<T> {
 
     traverseBF(): T[] {
         const visited: T[] = [];
-        const queue = new Queue<Node<T>>();
+        const queue = new Queue<BinaryNode<T>>();
 
         if(!this.root) {
             return []
@@ -53,7 +53,7 @@ export class BinaryTree<T> {
         queue.enqueue(this.root);
 
         while (queue.length) {
-            const curr = queue.deque() as Node<T>;
+            const curr = queue.deque() as BinaryNode<T>;
 
             visited.push(curr.value);
 
@@ -69,7 +69,7 @@ export class BinaryTree<T> {
         return visited;
     }
 
-    traversePreOrderDF(node: Node<T> | undefined, visited: T[]): T[] {
+    traversePreOrderDF(node: BinaryNode<T> | null, visited: T[]): T[] {
         if (!node) {
             return visited;
         }
@@ -83,7 +83,7 @@ export class BinaryTree<T> {
         return visited;
     }
 
-    traverseInOrderDF(node: Node<T> | undefined, visited: T[]): T[] {
+    traverseInOrderDF(node: BinaryNode<T> | null, visited: T[]): T[] {
         if (!node) {
             return visited;
         }
@@ -97,7 +97,7 @@ export class BinaryTree<T> {
         return visited;
     }
 
-    traversePostOrderDF(node: Node<T> | undefined, visited: T[]): T[] {
+    traversePostOrderDF(node: BinaryNode<T> | null, visited: T[]): T[] {
         if (!node) {
             return visited;
         }
@@ -111,14 +111,14 @@ export class BinaryTree<T> {
         return visited;
     }
 
-    private insertAt(node: Node<T>, item: T): void {
+    private insertAt(node: BinaryNode<T>, item: T): void {
         if (node.value > item && !node.left) {
-            node.left = { value: item, left: undefined, right: undefined } as Node<T>;
+            node.left = { value: item, left: null, right: null } as BinaryNode<T>;
             return;
         }
 
         if (node.value < item && !node.right) {
-            node.right = { value: item, left: undefined, right: undefined } as Node<T>;
+            node.right = { value: item, left: null, right: null } as BinaryNode<T>;
             return;
         }
 
@@ -130,4 +130,20 @@ export class BinaryTree<T> {
             return this.insertAt(node.right, item);
         }
     }
+}
+
+export function compare<T>(a: BinaryNode<T> | null, b: BinaryNode<T> | null): boolean {
+    if (a === null && b === null) {
+        return true;
+    }
+
+    if (a === null || b === null) {
+        return false;
+    }
+
+    if (a.value !== b.value) {
+        return false;
+    }
+
+    return compare(a.left, b.left) && compare(a.right, b.right);
 }
