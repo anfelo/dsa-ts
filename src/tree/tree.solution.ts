@@ -1,3 +1,5 @@
+import { Queue } from "../queue/queue.solution";
+
 type Node<T> = {
     value: T;
     left?: Node<T>;
@@ -42,25 +44,25 @@ export class BinaryTree<T> {
 
     traverseBF(): T[] {
         const visited: T[] = [];
-        const nodes: Node<T>[] = [];
+        const queue = new Queue<Node<T>>();
 
         if(!this.root) {
             return []
         }
 
-        nodes.push(this.root);
+        queue.enqueue(this.root);
 
-        while (nodes.length) {
-            const curr = nodes.shift() as Node<T>;
+        while (queue.length) {
+            const curr = queue.deque() as Node<T>;
 
             visited.push(curr.value);
 
             if (curr.left) {
-                nodes.push(curr.left);
+                queue.enqueue(curr.left);
             }
 
             if (curr.right) {
-                nodes.push(curr.right);
+                queue.enqueue(curr.right);
             }
         }
 
