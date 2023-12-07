@@ -1,0 +1,20 @@
+export type BinarySearchNode = {
+    value: number;
+    left?: BinarySearchNode;
+    right?: BinarySearchNode;
+};
+
+export class BinarySearchTree {
+    root?: BinarySearchNode;
+
+    insert(value: number): void {
+        if (!this.root) {
+            this.root = { value } as BinarySearchNode;
+            return;
+        }
+
+        this.insertNode(value, this.root);
+    }
+
+    private insertNode(value: number, node: BinarySearchNode | undefined): void {}
+}
