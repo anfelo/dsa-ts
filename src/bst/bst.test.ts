@@ -3,16 +3,16 @@ import { BinarySearchTree } from "./bst";
 test("should insert a new node", () => {
     const bst = new BinarySearchTree();
 
-    bst.insert(42);
+    bst.insert(bst.root, 42);
 
     expect(bst.root?.value).toBe(42);
 
-    bst.insert(8);
-    bst.insert(50);
-    bst.insert(1);
-    bst.insert(9);
-    bst.insert(49);
-    bst.insert(777);
+    bst.insert(bst.root, 8);
+    bst.insert(bst.root, 50);
+    bst.insert(bst.root, 1);
+    bst.insert(bst.root, 9);
+    bst.insert(bst.root, 49);
+    bst.insert(bst.root, 777);
 
     expect(bst.root?.left?.value).toBe(8);
     expect(bst.root?.left?.left?.value).toBe(1);
@@ -57,11 +57,11 @@ test("should delete an item from the tree", () => {
 });
 
 function fillBST(bst: BinarySearchTree): void {
-    bst.insert(42);
-    bst.insert(8);
-    bst.insert(50);
-    bst.insert(1);
-    bst.insert(9);
-    bst.insert(49);
-    bst.insert(777);
+    bst.insert(bst.root, 42);
+    bst.insert(bst.root, 8);
+    bst.insert(bst.root, 50);
+    bst.insert(bst.root, 1);
+    bst.insert(bst.root, 9);
+    bst.insert(bst.root, 49);
+    bst.insert(bst.root, 777);
 }

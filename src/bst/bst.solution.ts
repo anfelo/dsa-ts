@@ -11,13 +11,29 @@ export class BinarySearchTree {
         this.root = undefined;
     }
 
-    insert(item: number): void {
-        if (!this.root) {
-            this.root = { value: item } as BinarySearchNode;
+    insert(node: BinarySearchNode | undefined, value: number): void {
+        if (!node) {
+            this.root = { value } as BinarySearchNode;
+            return
+        }
+
+        if (!node.left && node.value > value) {
+            node.left = { value } as BinarySearchNode;
             return;
         }
 
-        this.insertAt(item, this.root);
+        if (!node.right && node.value < value) {
+            node.right = { value } as BinarySearchNode;
+            return
+        }
+
+        if (node.left && node.value > value) {
+            return this.insert(node.left, value);
+        }
+
+        if (node.right && node.value < value) {
+            return this.insert(node.right, value);
+        }
     }
 
     search(node: BinarySearchNode | undefined, item: number): BinarySearchNode | undefined {
@@ -29,24 +45,6 @@ export class BinarySearchTree {
             return this.search(node.left, item);
         } else {
             return this.search(node.right, item);
-        }
-    }
-
-    insertAt(item: number, parent: BinarySearchNode): void {
-        if (parent.value >= item) {
-            if (!parent.left) {
-                parent.left = { value: item } as BinarySearchNode;
-                return;
-            }
-
-            this.insertAt(item, parent.left);
-        } else {
-            if (!parent.right) {
-                parent.right = { value: item } as BinarySearchNode;
-                return;
-            }
-
-            this.insertAt(item, parent.right);
         }
     }
 
