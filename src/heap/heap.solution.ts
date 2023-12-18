@@ -27,6 +27,40 @@ export class MinHeap {
         return out;
     }
 
+    update(idx: number, newVal: number): void {
+        if (idx >= this.length) {
+            return;
+        }
+
+        const val = this.data[idx];
+        if (val === newVal) {
+            return;
+        }
+
+        this.data[idx] = newVal;
+
+        const pIdx = this.parent(idx);
+        const pVal = this.data[pIdx];
+
+        if (pVal > newVal) {
+            return this.heapifyUp(idx);
+        }
+
+        const lIdx = this.leftChild(idx);
+        const rIdx = this.rightChild(idx);
+
+        if (lIdx >= this.length || rIdx >= this.length) {
+            return;
+        }
+
+        const lVal = this.data[lIdx];
+        const rVal = this.data[rIdx];
+
+        if (newVal > lVal || newVal > rVal) {
+            return this.heapifyDown(idx);
+        }
+    }
+
     private heapifyDown(idx: number): void {
         const lIdx = this.leftChild(idx);
         const rIdx = this.rightChild(idx);
