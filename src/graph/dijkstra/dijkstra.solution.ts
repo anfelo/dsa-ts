@@ -5,9 +5,9 @@ export function dijkstra(
     source: number,
     sink: number
 ): number[] {
-    const seen = new Array(graph.length).fill(false);
-    const prev = new Array(graph.length).fill(-1);
-    const dists = new Array(graph.length).fill(Infinity);
+    const seen: boolean[] = new Array(graph.length).fill(false);
+    const prev: number[] = new Array(graph.length).fill(-1);
+    const dists: number[] = new Array(graph.length).fill(Infinity);
 
     dists[source] = 0;
 
