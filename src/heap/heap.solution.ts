@@ -27,13 +27,14 @@ export class MinHeap {
         return out;
     }
 
-    update(idx: number, newVal: number): void {
-        if (idx >= this.length) {
+    update(oldVal: number, newVal: number): void {
+        if (oldVal === newVal) {
             return;
         }
 
-        const val = this.data[idx];
-        if (val === newVal) {
+        const idx = this.data.indexOf(oldVal);
+
+        if (idx === -1) {
             return;
         }
 

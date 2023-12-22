@@ -1,4 +1,4 @@
-import { MinHeap } from "./heap";
+import { MinHeap } from "./heap.solution";
 
 test("should insert items to the heap", () => {
     const heap = new MinHeap();
@@ -53,15 +53,15 @@ test("should update item from the heap", () => {
 
     fillHeap(heap, [51, 101, 70, 120, 200, 80, 111, 150, 308]);
 
-    heap.update(0, 420);
+    heap.update(51, 420);
 
     expect(heap.data).toEqual([70, 101, 80, 120, 200, 420, 111, 150, 308]);
 
-    heap.update(3, 4);
+    heap.update(120, 4);
 
     expect(heap.data).toEqual([4, 70, 80, 101, 200, 420, 111, 150, 308]);
 
-    heap.update(1, 160);
+    heap.update(70, 160);
 
     expect(heap.data).toEqual([4, 101, 80, 150, 200, 420, 111, 160, 308]);
 });
