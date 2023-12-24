@@ -1,4 +1,4 @@
-export type QueueItem = { value: number, index: number };
+export type QueueItem = { value: number; index: number };
 
 export class PriorityQueue {
     length = 0;
@@ -34,13 +34,17 @@ export class PriorityQueue {
             return;
         }
 
-        const idx = this.data.findIndex((item) => item.index === oldItem.index);
+        const idx = this.data.findIndex(item => item.index === oldItem.index);
 
         if (idx === -1) {
             return;
         }
 
         this.data[idx] = newItem;
+
+        if (idx === 0) {
+            return;
+        }
 
         const pIdx = this.parent(idx);
         const pItem = this.data[pIdx];
