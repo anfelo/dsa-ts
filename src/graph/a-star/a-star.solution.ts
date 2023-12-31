@@ -34,9 +34,6 @@ export function astar(
         }
     }
 
-    console.log(prev)
-    console.log(dists)
-
     if (prev[dest] === -1) {
         return [];
     }
