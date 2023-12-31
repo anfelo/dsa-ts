@@ -30,6 +30,9 @@ export function dijkstra(
         }
     }
 
+    console.log(prev)
+    console.log(dists)
+
     if (prev[sink] === -1) {
         return [];
     }
