@@ -1,4 +1,4 @@
-import { MinHeap } from "./heap.solution";
+import { MinHeap } from "./heap";
 
 test("should insert items to the heap", () => {
     const heap = new MinHeap();
