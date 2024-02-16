@@ -43,15 +43,15 @@ test("should delete an item from the tree", () => {
     const bst = new BinarySearchTree();
     fillBST(bst);
 
-    bst.delete(bst.root, 1);
+    bst.delete(1, bst.root);
 
     expect(bst.root?.left?.left).toBeUndefined();
 
-    bst.delete(bst.root, 8);
+    bst.delete(8, bst.root);
 
     expect(bst.root?.left?.value).toBe(9);
 
-    bst.delete(bst.root, 50);
+    bst.delete(50, bst.root);
 
     expect(bst.root?.right?.value).toBe(777);
 });
